@@ -8,6 +8,9 @@ All packages in this repository are released together under a single version.
 
 ## [Unreleased]
 
+### Fixes
+- Fix populating time in DatePicker when using 24-hour format
+
 ## [1.0.0] - 2026-09-10
 
 The first stable release. The public API is what OpenVue commits to for the 1.x line, and the packages now publish under the `latest` dist-tag, so a plain `npm install openvue` gives you 1.0.0 instead of a prerelease. From here the project follows semantic versioning: additions go in minor releases, fixes in patch releases, and anything that breaks your code waits for 2.0.
