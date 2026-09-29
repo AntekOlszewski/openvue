@@ -85,8 +85,9 @@ export default defineNuxtConfig({
         alias
     },
     sitemap: {
-        autoLastmod: true,
-        exclude: ['/llms/**'],
+        // A build-time lastmod stamps every URL with the same date on each deploy, which Google treats as unreliable and ignores.
+        autoLastmod: false,
+        exclude: ['/llms/**', '/primeclt'],
         defaults: {
             changefreq: 'weekly',
             priority: 0.7
