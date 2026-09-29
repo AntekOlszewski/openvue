@@ -14,7 +14,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[**Documentation**](https://openvue.dev) · [**Setup**](https://openvue.dev/setup) · [**Playground**](https://openvue.dev/playground) · [**Migrate from PrimeVue**](https://openvue.dev/migrate) · [**Changelog**](CHANGELOG.md)
+[**Documentation**](https://openvue.dev) · [**Setup**](https://openvue.dev/setup) · [**Components**](https://openvue.dev/components) · [**Migrate from PrimeVue**](https://openvue.dev/migrate) · [**Changelog**](CHANGELOG.md)
 
 </div>
 
