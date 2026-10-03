@@ -935,7 +935,7 @@ export default {
                     this.$refs.input.$el.setSelectionRange(selectionEnd, selectionEnd);
                 } else if (newLength === currentLength) {
                     if (operation === 'insert') {
-                        const droppedLength = valueStr ? valueStr.length - newLength : 0;
+                        const droppedLength = valueStr ? Math.max(0, valueStr.length - newLength) : 0;
 
                         selectionEnd = selectionEnd + 1 - droppedLength;
                         this.$refs.input.$el.setSelectionRange(selectionEnd, selectionEnd);

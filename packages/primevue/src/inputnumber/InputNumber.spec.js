@@ -115,18 +115,34 @@ describe('InputNumber.vue', () => {
             expect(wrapper.emitted().input.map(([e]) => e.value)).toEqual([1, 12, 123]);
         });
 
-        it('should keep multi char prefix when typing digits after zero', async () => {
-            await wrapper.setProps({ modelValue: 0, prefix: 'kg ' });
+        it('should keep multi char prefix and suffix when typing digits after zero', async () => {
+            await wrapper.setProps({ modelValue: 0, prefix: '$ ', suffix: ' kg' });
 
             const input = wrapper.find('input.p-inputnumber-input').element;
 
-            expect(input.value).toBe('kg 0');
+            expect(input.value).toBe('$ 0 kg');
 
-            input.setSelectionRange(4, 4);
+            input.setSelectionRange(3, 3);
 
-            expect(await type(input, '1')).toEqual({ value: 'kg 1', caret: 4 });
-            expect(await type(input, '2')).toEqual({ value: 'kg 12', caret: 5 });
+            expect(await type(input, '1')).toEqual({ value: '$ 1 kg', caret: 3 });
+            expect(await type(input, '2')).toEqual({ value: '$ 12 kg', caret: 4 });
             expect(wrapper.emitted().input.map(([e]) => e.value)).toEqual([1, 12]);
+        });
+
+        it('should keep typing into the integer part of a currency value', async () => {
+            await wrapper.setProps({ modelValue: 0, mode: 'currency', currency: 'USD', locale: 'en-US' });
+
+            const input = wrapper.find('input.p-inputnumber-input').element;
+
+            expect(input.value).toBe('$0.00');
+
+            input.setSelectionRange(2, 2);
+
+            expect(await type(input, '1')).toEqual({ value: '$1.00', caret: 2 });
+            expect(await type(input, '2')).toEqual({ value: '$12.00', caret: 3 });
+            expect(await type(input, '5')).toEqual({ value: '$125.00', caret: 4 });
+            expect(await type(input, '0')).toEqual({ value: '$1,250.00', caret: 6 });
+            expect(wrapper.emitted().input.map(([e]) => e.value)).toEqual([1, 12, 125, 1250]);
         });
 
         it('should place caret after typed digit with single char suffix', async () => {
